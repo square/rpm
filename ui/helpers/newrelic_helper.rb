@@ -172,9 +172,9 @@ module NewrelicHelper
     if depth > 0
       if !segment.called_segments.empty?
         row_class =segment_child_row_class(segment)
-        link_to_function(tag('img', :src => collapsed_image_path, :id => "image_#{row_class}",
+        link_to_function(tag('img', :src => collapsed_image_path, :id => "image-#{row_class}",
             :class_for_children => row_class, 
-            :class => (!segment.called_segments.empty?) ? 'parent_segment_image' : 'child_segment_image'), 
+            :class => (!segment.called_segments.empty?) ? 'parent-segment-image' : 'child-segment-image'), 
             "toggle_row_class(this)")
       end
     end
@@ -199,8 +199,8 @@ module NewrelicHelper
     
     classes << "segment#{segment.parent_segment.segment_id}" if depth > 1 
     
-    classes << "view_segment" if segment.metric_name.index('View') == 0
-    classes << "summary_segment" if segment.is_a?(NewRelic::TransactionSample::CompositeSegment)
+    classes << "view-segment" if segment.metric_name.index('View') == 0
+    classes << "summary-segment" if segment.is_a?(NewRelic::TransactionSample::CompositeSegment)
     
     classes.join(' ')
   end
@@ -209,7 +209,7 @@ module NewrelicHelper
   def render_indentation_classes(depth)
     styles = [] 
      (1..depth).each do |d|
-      styles <<  ".segment_indent_level#{d} { display: inline-block; margin-left: #{(d-1)*20}px }"
+      styles <<  ".segment-indent-level#{d} { display: inline-block; margin-left: #{(d-1)*20}px }"
     end
     content_tag("style", styles.join(' '))    
   end

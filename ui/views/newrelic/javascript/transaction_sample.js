@@ -1,11 +1,11 @@
 
 function show_request_params()
 {
-	$('params_link').hide();
-	$('request_params').show();
+	$('params-link').hide();
+	$('request-params').show();
 }
 function show_view(page_id){
-	['show_sample_summary', 'show_sample_sql', 'show_sample_detail'].each(Element.hide);  
+	['show-sample-summary', 'show-sample-sql', 'show-sample-detail'].each(Element.hide);  
 	$(page_id).show();
 }
 function toggle_row_class(theLink)
@@ -17,7 +17,7 @@ function toggle_row_class(theLink)
 function toggle_row_class_for_image(image)
 {
 	var clazz = image.getAttribute('class_for_children');
-	var elements = $('trace_detail_table').select('tr.' + clazz);
+	var elements = $('trace-detail-table').select('tr.' + clazz);
 	if (elements.length == 0) return;
 	var visible = !elements[0].visible();
 	show_or_hide_elements(elements, visible);
@@ -25,7 +25,7 @@ function toggle_row_class_for_image(image)
 }
 function show_or_hide_class_elements(clazz, visible)
 {
-	var elements = $('trace_detail_table').select('tr.' + clazz);
+	var elements = $('trace-detail-table').select('tr.' + clazz);
 	show_or_hide_elements(elements, visible);
 }
 function show_or_hide_elements(elements, visible)
@@ -48,7 +48,7 @@ function get_cleared_highlight_styles()
 	if (!g_style_element)
 	{
 		g_style_element = document.createElement('style');
-		g_style_element.setAttribute('id', 'highlight_styles');
+		g_style_element.setAttribute('id', 'highlight-styles');
 		document.getElementsByTagName('head')[0].appendChild(g_style_element);
 	}
 	else if (g_style_element.lastChild) {
@@ -66,7 +66,7 @@ function mouse_out_row(element)
 }
 function get_parent_segments()
 {
-	return $('trace_detail_table').select('img.parent_segment_image');
+	return $('trace-detail-table').select('img.parent-segment-image');
 }
 
 function expand_all_segments()
@@ -89,7 +89,7 @@ function collapse_all_segments()
 }
 function jump_to_metric(metric_name)
 {
-	var elements = $('trace_detail_table').select('tr.' + metric_name);
+	var elements = $('trace-detail-table').select('tr.' + metric_name);
 	for (var i = 0; i < elements.length; i++) 
 	{
 		new Effect.Highlight(elements[i]); //, {endcolor : 'aliceblue'});
@@ -98,7 +98,7 @@ function jump_to_metric(metric_name)
 	expand_all_segments();
 }
 function sql_mouse_over(id) {
-	var sql_div = $('sql_statement' + id);
+	var sql_div = $('sql-statement' + id);
 	if (sql_div)
 		Tip(sql_div.innerHTML);
 }

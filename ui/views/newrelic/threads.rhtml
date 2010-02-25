@@ -1,5 +1,5 @@
 <h2>Thread List</h2>
-<p><%= link_to 'Back', :action => 'index' %></p>
+<p><%== link_to 'Back', :action => 'index' %></p>
 <table>
     <thead><th class="title" colspan="5">Application Threads</th></thead>
 	<thead>
@@ -15,13 +15,13 @@
   nr_threads = []
   threads.delete_if { | thread | nr_threads << thread if thread.key? 'newrelic_label' }
   ([ main ] + threads).each_with_index do | thread, i | -%>
-<tr class="odd_row">
-  <td valign="top"><%= h(thread == main ? 'main' : thread.to_s) %></td>
-  <td valign="top"><%= h(thread.status || 'terminated with exception') %></td>
-  <td valign="top"><%= h(thread.group || 'none') %></td>
-  <td valign="top"><%= h thread.priority %></td>
+<tr class="odd-row">
+  <td valign="top"><%== h(thread == main ? 'main' : thread.to_s) %></td>
+  <td valign="top"><%== h(thread.status || 'terminated with exception') %></td>
+  <td valign="top"><%== h(thread.group || 'none') %></td>
+  <td valign="top"><%== h thread.priority %></td>
   <td class="locals">
-  	<%= thread.keys.map{|k| h k}.join("</br>") %>
+  	<%== thread.keys.map{|k| h k}.join("</br>") %>
   </td>
 </tr>
 <% end -%>
@@ -37,13 +37,13 @@
 	</thead>
 
 <% nr_threads.each_with_index do | thread, i | -%>
-<tr class="odd_row">
-  <td valign="top"><%= h thread['newrelic_label'] %></td>
-  <td valign="top"><%= h(thread.status || 'terminated with exception') %></td>
-  <td valign="top"><%= h(thread.group || 'none') %></td>
-  <td valign="top"><%= h thread.priority %></td>
+<tr class="odd-row">
+  <td valign="top"><%== h thread['newrelic_label'] %></td>
+  <td valign="top"><%== h(thread.status || 'terminated with exception') %></td>
+  <td valign="top"><%== h(thread.group || 'none') %></td>
+  <td valign="top"><%== h thread.priority %></td>
   <td class="locals">
-  	<%= (thread.keys - ['newrelic_label']).map{|k| h k}.join("</br>") %>
+  	<%== (thread.keys - ['newrelic_label']).map{|k| h k}.join("</br>") %>
   </td>
 </tr>
 <% end -%>

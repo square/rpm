@@ -1,29 +1,29 @@
-<script type="text/javascript" src="<%= url_for(:controller => :newrelic, :action => :file, :file => 'transaction_sample.js') %>"></script>
-<div id='summary_table'>
-<table class="light_background">
+<script type="text/javascript" src="<%== url_for(:controller => :newrelic, :action => :file, :file => 'transaction_sample.js') %>"></script>
+<div id='summary-table'>
+<table class="light-background">
   <tr>
     <th>URL:</th>
-    <td><%= @sample.params[:uri]%></td>
+    <td><%== @sample.params[:uri]%></td>
   </tr>
   <tr>
     <th>Controller:</th>
-    <td><%= @sample_controller_name%></td>
+    <td><%== @sample_controller_name%></td>
   </tr>
   <tr>
     <th>Action:</th>
-    <td><%= @sample_action_name%></td>
+    <td><%== @sample_action_name%></td>
   </tr>
   <tr>
     <th>Start Time:</th>
-    <td><%= format_timestamp(@sample.start_time) %></td>
+    <td><%== format_timestamp(@sample.start_time) %></td>
   </tr>
   <tr>
     <th>Duration:</th>
-    <td><%= colorize(@sample.duration, 1, 2) %> ms</td>
+    <td><%== colorize(@sample.duration, 1, 2) %> ms</td>
   </tr>
   <tr>
     <th>CPU Burn:</th>
-    <td><%= to_ms(@sample.params[:cpu_time]) if @sample.params[:cpu_time] %> ms</td>
+    <td><%== to_ms(@sample.params[:cpu_time]) if @sample.params[:cpu_time] %> ms</td>
   </tr>
   
   <% unless @custom_params.empty? %>
@@ -32,7 +32,7 @@
       <td>
       <small>
         <% @custom_params.each do |k,v| %>
-          <b><%= h k %>: </b><%=h v%><br/>
+          <b><%== h k %>: </b><%==h v%><br/>
         <% end %>
       </small>
       </td>
@@ -43,12 +43,12 @@
     <tr>
       <th valign="top">HTTP Params:</th>
       <td>
-        <%= link_to_function("#{@request_params.length}...", "show_request_params()", :id => "params_link") %>
+        <%== link_to_function("#{@request_params.length}...", "show_request_params()", :id => "params_link") %>
 
-          <div id='request_params' style="display: none;">
+          <div id='request-params' style="display: none;">
           <small>
             <% @request_params.each do |k,v| %>
-              <b><%= h k %>: </b><%=h v%><br/>
+              <b><%== h k %>: </b><%==h v%><br/>
             <% end %>
           </small>
         </div>
@@ -62,16 +62,16 @@
 <br/>
 <div id="view_sample">
 	<% if @sample.profile %>
-	  <%= profile_table(@sample.profile) %> 
+	  <%== profile_table(@sample.profile) %> 
 	<% else %>
 	<div align=center width="100%">
-		<%= show_view_link 'Summary', 'show_sample_summary' %>
-		<%= show_view_link 'Details', 'show_sample_detail' %>
-		<%= show_view_link 'SQL', 'show_sample_sql' %>
+		<%== show_view_link 'Summary', 'show-sample-summary' %>
+		<%== show_view_link 'Details', 'show-sample-detail' %>
+		<%== show_view_link 'SQL', 'show-sample-sql' %>
 	</div>
 	<br/>
-	<%= %w[show_sample_summary show_sample_sql show_sample_detail].collect do |p|
-		options = {:align => 'center', :id => p}
+	<%== %w[show_sample_summary show_sample_sql show_sample_detail].collect do |p|
+		options = {:align => 'center', :id => p.dasherize}
 		options[:style] = 'display: none' unless p == params[:action]
 		content_tag('div', render(:partial => p), options)
 	end.join(' ')%>

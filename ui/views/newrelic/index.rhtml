@@ -1,32 +1,32 @@
 <table>
     <tr>
 		<td valign=top>
-        <table class="transaction_list_table">
+        <table class="transaction-list-table">
             <thead>
                 <tr>
                     <td>
-                        <%= link_to_if (params[:h] ||params[:u]), 'Timestamp' %>
+                        <%== link_to_if (params[:h] ||params[:u]), 'Timestamp' %>
                     </td>
                     <td>
-                        <%= link_to_unless_current('Resp. Time', :h => 'y') %>
+                        <%== link_to_unless_current('Resp. Time', :h => 'y') %>
                     </td>
                     <td>
-                        <%= link_to_unless_current('URL', :u =>'y') %>
+                        <%== link_to_unless_current('URL', :u =>'y') %>
                     </td>
                     <td/>
                 </tr>
-            </thead><%= render :partial => 'sample', :collection => @samples %>
+            </thead><%== render :partial => 'sample', :collection => @samples %>
         </table>
 		</td>
 		<td valign=top>
-        <%= link_to_if @samples.size > 0, "Clear Transactions (#{@samples.size})", :action => 'reset' %><br/>
-        <%= link_to "List Threads", :action => 'threads' %><br/>
+        <%== link_to_if @samples.size > 0, "Clear Transactions (#{@samples.size})", :action => 'reset' %><br/>
+        <%== link_to "List Threads", :action => 'threads' %><br/>
 		<% if NewRelic::Control.instance.profiling_available? %>
 		  <p><b>Profiling available:</b>
 		  <% if NewRelic::Control.instance.profiling? %>
-            <%= link_to "Stop Profiling", :action => 'profile', :stop => true %>
+            <%== link_to "Stop Profiling", :action => 'profile', :stop => true %>
 	      <% else %>
-            <%= link_to "Start Profiling", :action => 'profile', :start => true %>
+            <%== link_to "Start Profiling", :action => 'profile', :start => true %>
 		  <% end %>
 		  </p>
 		<% else %>

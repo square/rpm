@@ -47,7 +47,7 @@ class NewrelicController < ActionController::Base
   end
   
   def file
-    file_name=params[:file].join
+    file_name=Array(params[:file]).join
     file_name=~/^.*[.]([^.]*)$/
     ext=$1
     case ext
@@ -137,13 +137,13 @@ class NewrelicController < ActionController::Base
     file.each_line do |line|
       # place an anchor 6 lines above the selected line (if the line # < 6)
       if file.lineno == line_number - 6
-        @source << "</pre><pre id = 'selected_line'>"
+        @source << "</pre><pre id='selected-line'>"
         @source << line.rstrip
         @source << "</pre><pre>"
         
         # highlight the selected line
       elsif file.lineno == line_number
-        @source << "</pre><pre class = 'selected_source_line'>"
+        @source << "</pre><pre class='selected-source-line'>"
         @source << line.rstrip
         @source << "</pre><pre>"
       else
