@@ -13,9 +13,13 @@ class NewRelic::Agent::AgentTestController < NewRelic::Agent::SuperclassControll
   
 #  def rescue_action(e) raise e end
   
-  ActionController::Routing::Routes.draw do | map |
-    map.connect ':controller/:action.:format'
+  # ActionController::Routing::Routes.draw do | map |
+  #   map.connect ':controller/:action.:format'
+  # end
+  Merb::Router.prepare do |r|
+    match('/:controller(/:action)(.:format)').register
   end
+  
   def index
     sleep params['wait'].to_i if params['wait']
     render :text => params.inspect

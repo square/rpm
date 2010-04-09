@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{newrelic_rpm}
-  s.version = "2.10.4"
+  s.version = "2.11.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Bill Kayser"]
-  s.date = %q{2010-02-16}
+  s.date = %q{2010-04-03}
   s.description = %q{New Relic RPM is a Ruby performance management system, developed by
 New Relic, Inc (http://www.newrelic.com).  RPM provides you with deep
 information about the performance of your Ruby on Rails or Merb
@@ -21,8 +21,7 @@ http://github.com/newrelic/rpm/tree/master.
   s.executables = ["mongrel_rpm", "newrelic_cmd"]
   s.extra_rdoc_files = [
     "CHANGELOG",
-     "LICENSE",
-     "README.md"
+     "LICENSE"
   ]
   s.files = [
     "CHANGELOG",
@@ -36,7 +35,6 @@ http://github.com/newrelic/rpm/tree/master.
      "lib/new_relic/agent/agent.rb",
      "lib/new_relic/agent/busy_calculator.rb",
      "lib/new_relic/agent/chained_call.rb",
-     "lib/new_relic/agent/collection_helper.rb",
      "lib/new_relic/agent/error_collector.rb",
      "lib/new_relic/agent/instrumentation/active_merchant.rb",
      "lib/new_relic/agent/instrumentation/active_record_instrumentation.rb",
@@ -54,7 +52,10 @@ http://github.com/newrelic/rpm/tree/master.
      "lib/new_relic/agent/instrumentation/rails/action_controller.rb",
      "lib/new_relic/agent/instrumentation/rails/action_web_service.rb",
      "lib/new_relic/agent/instrumentation/rails/errors.rb",
+     "lib/new_relic/agent/instrumentation/rails3/action_controller.rb",
+     "lib/new_relic/agent/instrumentation/rails3/errors.rb",
      "lib/new_relic/agent/instrumentation/sinatra.rb",
+     "lib/new_relic/agent/instrumentation/unicorn_instrumentation.rb",
      "lib/new_relic/agent/method_tracer.rb",
      "lib/new_relic/agent/sampler.rb",
      "lib/new_relic/agent/samplers/cpu_sampler.rb",
@@ -68,12 +69,14 @@ http://github.com/newrelic/rpm/tree/master.
      "lib/new_relic/agent/stats_engine/transactions.rb",
      "lib/new_relic/agent/transaction_sampler.rb",
      "lib/new_relic/agent/worker_loop.rb",
+     "lib/new_relic/collection_helper.rb",
      "lib/new_relic/commands/deployments.rb",
      "lib/new_relic/commands/new_relic_commands.rb",
      "lib/new_relic/control.rb",
      "lib/new_relic/control/external.rb",
      "lib/new_relic/control/merb.rb",
      "lib/new_relic/control/rails.rb",
+     "lib/new_relic/control/rails3.rb",
      "lib/new_relic/control/ruby.rb",
      "lib/new_relic/control/sinatra.rb",
      "lib/new_relic/delayed_job_injection.rb",
@@ -123,6 +126,7 @@ http://github.com/newrelic/rpm/tree/master.
      "test/new_relic/agent/busy_calculator_test.rb",
      "test/new_relic/agent/collection_helper_test.rb",
      "test/new_relic/agent/error_collector_test.rb",
+     "test/new_relic/agent/memcache_instrumentation_test.rb",
      "test/new_relic/agent/method_tracer_test.rb",
      "test/new_relic/agent/metric_data_test.rb",
      "test/new_relic/agent/metric_frame_test.rb",
@@ -187,14 +191,14 @@ http://github.com/newrelic/rpm/tree/master.
   s.post_install_message = %q{
 Please see http://support.newrelic.com/faqs/docs/ruby-agent-release-notes
 for a complete description of the features and enhancements available
-in version 2.10 of the Ruby Agent.
+in version 2.11 of the Ruby Agent.
 
 For details on this specific release, refer to the CHANGELOG file.
 
 }
   s.rdoc_options = ["--charset=UTF-8", "--line-numbers", "--inline-source", "--title", "New Relic RPM"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.6}
   s.summary = %q{New Relic Ruby Performance Monitoring Agent}
 
   if s.respond_to? :specification_version then
