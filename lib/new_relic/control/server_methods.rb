@@ -85,7 +85,8 @@ module NewRelic
           http.use_ssl = true
           if verify_certificate?
             http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-            http.ca_file = File.join(File.dirname(__FILE__), '..', '..', 'cert', 'cacert.pem')
+            # http.ca_file = File.join(File.dirname(__FILE__), '..', '..', 'cert', 'cacert.pem')
+            http.ca_file = OpenSSL::X509::DEFAULT_CERT_FILE
           else
             http.verify_mode = OpenSSL::SSL::VERIFY_NONE
           end
